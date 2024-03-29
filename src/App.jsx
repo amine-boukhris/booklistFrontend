@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import PrivateRoute from './components/PrivateRoute'
+// import PrivateRoute from './components/PrivateRoute'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
-import Login from './pages/Login'
+import AuthForm from './pages/AuthForm'
 
 function App() {
     return (
@@ -13,12 +13,19 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<Home />} />
 
-                    <Route path="/login" element={<Login />} />
+                    <Route
+                        path="/login"
+                        element={<AuthForm action={'login'} />}
+                    />
+                    <Route
+                        path="/register"
+                        element={<AuthForm action={'register'} />}
+                    />
                     {/* <PrivateRoute path="/addbook" component={AddBook} />
                     <PrivateRoute path="/books/:id" component={Book} />
                     <PrivateRoute path="/profile" component={Profile} />
                     <Route path="/about" component={About} />
-                    <Route path="/register" component={Register} /> */}
+                */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>

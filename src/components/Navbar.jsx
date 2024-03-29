@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
     const location = useLocation()
 
-    if (location.pathname === '/login' || location.pathname === '/notfound') {
+    const includePaths = ['/home', '/addbook', '/profile', '/about']
+    if (!includePaths.includes(location.pathname)) {
         return null
     }
 
