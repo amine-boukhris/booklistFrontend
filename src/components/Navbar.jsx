@@ -3,8 +3,25 @@ import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
     const location = useLocation()
 
-    const includePaths = ['/home', '/addbook', '/profile', '/about']
-    if (!includePaths.includes(location.pathname)) {
+    const paths = [
+        '/',
+        '/addbook',
+        '/profile',
+        '/about',
+        /^\/books\/[a-zA-Z0-9]+$/, // Regex pattern for dynamic paths like /books/:id
+    ]
+
+    const shouldRenderNavBar = (currentPath, paths) => {
+        return paths.some((path) => {
+            if (typeof path === 'string') {
+                return path === currentPath
+            } else if (path instanceof RegExp) {
+                return path.test(currentPath)
+            }
+            return false
+        })
+    }
+    if (!shouldRenderNavBar(location.pathname, paths)) {
         return null
     }
 

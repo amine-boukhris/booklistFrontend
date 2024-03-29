@@ -1,17 +1,47 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-// import PrivateRoute from './components/PrivateRoute'
+import PrivateRoute from './components/PrivateRoute'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import AuthForm from './pages/AuthForm'
+import AddBook from './pages/AddBook'
+import Book from './pages/Book'
 
 function App() {
     return (
         <Router>
-            <div>
+            <div className="pb-12 h-screen">
                 <Navbar />
                 <Routes>
-                    <Route exact path="/" element={<Home />} />
+                    <Route
+                        exact
+                        path="/"
+                        element={
+                            <PrivateRoute>
+                                <Home />
+                            </PrivateRoute>
+                        }
+                    />
+
+                    <Route
+                        exact
+                        path="/addbook"
+                        element={
+                            <PrivateRoute>
+                                <AddBook />
+                            </PrivateRoute>
+                        }
+                    />
+
+                    <Route
+                        exact
+                        path="/books/:id"
+                        element={
+                            <PrivateRoute>
+                                <Book />
+                            </PrivateRoute>
+                        }
+                    />
 
                     <Route
                         path="/login"
@@ -21,11 +51,7 @@ function App() {
                         path="/register"
                         element={<AuthForm action={'register'} />}
                     />
-                    {/* <PrivateRoute path="/addbook" component={AddBook} />
-                    <PrivateRoute path="/books/:id" component={Book} />
-                    <PrivateRoute path="/profile" component={Profile} />
-                    <Route path="/about" component={About} />
-                */}
+
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>

@@ -68,7 +68,7 @@ const AuthForm = ({ action }) => {
                         </span>
                         <input
                             id="password"
-                            type="text" // change to password
+                            type="password"
                             placeholder="password"
                             className="input input-bordered w-full"
                             value={password}

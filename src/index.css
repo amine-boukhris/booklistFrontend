@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .disabledInput {
+        @apply disabled:text-neutral disabled:bg-base-100 disabled:cursor-default;
+    }
+}

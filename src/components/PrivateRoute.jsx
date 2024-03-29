@@ -1,28 +1,28 @@
-// PrivateRoute.js
 import { useState, useEffect } from 'react'
-import { Route, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api/verifytoken'
+const baseUrl = 'http://localhost:5000/api/users'
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const verifyToken = async () => {
             try {
-                const token = localStorage.getItem('jwtToken')
+                const token = localStorage.getItem('token')
+
                 if (!token) {
                     setIsAuthenticated(false)
                     setLoading(false)
                     return
                 }
 
-                const response = await axios.post(baseUrl, {
-                    token,
+                const response = await axios.post(`${baseUrl}/verifytoken`, {
+                    token: token,
                 })
-                if (response.data.isValid) {
+                if (response.status === 200) {
                     setIsAuthenticated(true)
                 } else {
                     setIsAuthenticated(false)
@@ -38,23 +38,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         verifyToken()
     }, [])
 
-    // if (loading) {
-    //     return <div>Loading...</div>
-    // }
+    if (loading) {
+        return <div>Loading...</div>
+    }
 
-    return (
-        <Route
-            {...rest}
-            render={(props) =>
-                isAuthenticated ? (
-                    <Component {...props} />
-                ) : (
-                    // <Redirect to="/login" />
-                    useNavigate('/')
-                )
-            }
-        />
-    )
+    return isAuthenticated ? children : <Navigate to={'/login'} />
 }
 
 export default PrivateRoute
