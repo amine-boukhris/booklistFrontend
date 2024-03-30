@@ -1,7 +1,8 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     const location = useLocation()
+    const navigate = useNavigate()
 
     const paths = [
         '/',
@@ -25,22 +26,25 @@ const Navbar = () => {
         return null
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        navigate('/login')
+    }
+
     return (
         <div className="container flex items-center mx-auto bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">BookList</a>
+                <Link to={'/'} className="btn btn-ghost text-xl">BookList</Link>
             </div>
             <div className="flex-none">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 items-center">
                     <li>
-                        <Link to={'/'}>Link 1</Link>
+                        <Link to={'/'}>Home</Link>
                     </li>
                     <li>
-                        <Link to={'/'}>Link 2</Link>
+                        <Link to={'/addbook'}>Add</Link>
                     </li>
-                    <li>
-                        <Link to={'/'}>Link 3</Link>
-                    </li>
+                    <button className='btn btn-sm mx-6' onClick={handleLogout}>Logout</button>
                     <label className="swap swap-rotate mx-2">
                         <input
                             type="checkbox"

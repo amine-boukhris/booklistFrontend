@@ -1,10 +1,11 @@
 import formatDate from '../../utils/formatDate'
+import { Link } from 'react-router-dom'
 
 const Table = ({ user }) => {
     const books = user.books
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto my-12">
             <h1 className="text-center text-3xl font-bold my-6">Book List</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
@@ -21,10 +22,26 @@ const Table = ({ user }) => {
                         {books.map((book) => {
                             return (
                                 <tr key={book._id}>
-                                    <td>{book.title}</td>
+                                    <td>
+                                        <Link to={`/books/${book._id}`}>
+                                            {book.title}
+                                        </Link>
+                                    </td>
                                     <td>{book.author}</td>
-                                    <td>{book.genre || <span className='italic'>not set</span>}</td>
-                                    <td>{book.publicationYear || <span className='italic'>not set</span>}</td>
+                                    <td>
+                                        {book.genre || (
+                                            <span className="italic">
+                                                not set
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td>
+                                        {book.publicationYear || (
+                                            <span className="italic">
+                                                not set
+                                            </span>
+                                        )}
+                                    </td>
                                     <td>{formatDate(book.createdAt)}</td>
                                 </tr>
                             )

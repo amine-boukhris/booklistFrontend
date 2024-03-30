@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const baseUrl = 'http://localhost:5000/api/users'
 
@@ -81,6 +81,14 @@ const AuthForm = ({ action }) => {
                         {action.charAt(0).toUpperCase() + action.slice(1)}
                     </button>
                 </div>
+                <Link
+                    className="text-center text-accent"
+                    to={action == 'register' ? '/login' : '/register'}
+                >
+                    {action == 'register'
+                        ? 'already have an account? login'
+                        : "don't have an account? register"}
+                </Link>
             </form>
         </div>
     )
