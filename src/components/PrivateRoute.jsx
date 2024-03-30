@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api/users'
+const baseUrl = '/api/users'
 
 const PrivateRoute = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)

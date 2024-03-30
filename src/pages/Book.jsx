@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { AlertError, AlertSuccess } from '../components/Alert'
 import formatDate from '../utils/formatDate'
 
-const baseUrl = 'http://localhost:5000/api/books'
+const baseUrl = '/api/books'
 
 const Book = () => {
     const { id } = useParams()

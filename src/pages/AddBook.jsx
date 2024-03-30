@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import isValidYear from '../utils/isValidYear'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api/books'
+const baseUrl = '/api/books'
 
 const AddBook = () => {
     const [title, setTitle] = useState('')

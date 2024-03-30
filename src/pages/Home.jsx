@@ -3,7 +3,7 @@ import Hero from './components/Hero'
 import Table from './components/Table'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api/users'
+const baseUrl = '/api/users'
 
 const Home = () => {
     const [user, setUser] = useState({})

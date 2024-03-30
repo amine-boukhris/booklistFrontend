@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const baseUrl = 'http://localhost:5000/api/users'
+const baseUrl = '/api/users'
 
 const AuthForm = ({ action }) => {
     const [username, setUsername] = useState('')

@@ -5,7 +5,7 @@ const Table = ({ user }) => {
     const books = user.books
 
     return (
-        <div className="container mx-auto my-12">
+        <div className="container mx-auto pb-16">
             <h1 className="text-center text-3xl font-bold my-6">Book List</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
